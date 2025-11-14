@@ -1,36 +1,71 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+📩 Ping Coming Soon – Frontend Mentor Challenge
 
-## Getting Started
+A responsive coming soon page built from the Frontend Mentor Ping Single Column challenge using modern Next.js tools and clean UI.
 
-First, run the development server:
+🎯 Live Demo
 
-```bash
+https://ping-coming-soon-yourname.vercel.app](https://ping-coming-soon-pi.vercel.app/
+
+🚀 Tech Stack
+
+Next.js 14 (App Router + React 19)
+
+TypeScript
+
+Tailwind CSS
+
+React Icons (Ionicons)
+
+📌 Features
+
+Email subscription with validation
+
+Responsive layout (mobile-first)
+
+Hover / focus / error states
+
+Fully accessible input form (aria-live, aria-invalid)
+
+Styled according to provided style guide
+
+Deployed on Vercel
+
+🖼 Preview
+
+<img width="1919" height="945" alt="image" src="https://github.com/user-attachments/assets/e03fbd54-f27b-4601-be79-28359e11c4ef" />
+
+
+
+/public
+  ├── logo.svg
+  └── illustration.png
+
+🧠 What I Learned
+
+Setting up UI from a style guide instead of copying design exactly
+
+Tailwind responsive design & spacing system
+
+Managing form validation states cleanly in React
+
+Importing & using icon libraries inside Next.js
+
+Publishing a small production-ready component structure
+
+🛠 Getting Started Locally
+git clone https://github.com/Eshant4/ping-coming-soon.git
+cd ping-coming-soon
+npm install
 npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
-```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+Visit:
+👉 http://localhost:3000
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
-
-## Learn More
-
-To learn more about Next.js, take a look at the following resources:
-
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
-
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
-
-## Deploy on Vercel
-
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+🧾 Style Guide Specs
+Category	Value
+Font	Libre Franklin (300, 600, 700)
+Primary	hsl(223, 87%, 63%)
+Error	hsl(354, 100%, 66%)
+Gray	hsl(0, 0%, 59%)
+Heading	hsl(209, 33%, 12%)
