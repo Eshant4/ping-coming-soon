@@ -4,7 +4,7 @@ A responsive coming soon page built from the Frontend Mentor Ping Single Column 
 
 🎯 Live Demo
 
-https://ping-coming-soon-yourname.vercel.app](https://ping-coming-soon-pi.vercel.app/
+https://ping-coming-soon-pi.vercel.app/
 
 🚀 Tech Stack
 
