@@ -1,65 +1,134 @@
-import Image from "next/image";
+"use client";
 
+import Image from "next/image";
+import { useState, type FormEvent } from "react";
+import illust from "@/app/illustration.png";
+import logo from "@/app/logo.svg";
+
+import { IoLogoFacebook, IoLogoTwitter, IoLogoInstagram } from "react-icons/io5";
+const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
 export default function Home() {
+  const [email, setEmail] = useState("");
+  const [error, setError] = useState("");
+  const [success, setSuccess] = useState("");
+
+  const handleSubmit = (e: FormEvent<HTMLFormElement>) => {
+    e.preventDefault();
+    setError("");
+    setSuccess("");
+
+    if (!email.trim()) {
+      setError("Whoops! It looks like you forgot to add your email");
+      return;
+    }
+
+    if (!emailRegex.test(email.trim())) {
+      setError("Please provide a valid email address");
+      return;
+    }
+
+    setSuccess("Thanks! We’ll notify you 🔔");
+    setEmail("");
+  };
+
   return (
-    <div className="flex min-h-screen items-center justify-center bg-zinc-50 font-sans dark:bg-black">
-      <main className="flex min-h-screen w-full max-w-3xl flex-col items-center justify-between py-32 px-16 bg-white dark:bg-black sm:items-start">
+    <main className="min-h-screen bg-white flex flex-col items-center px-4 ">
+      <div className="flex-1 flex flex-col items-center w-full max-w-3xl pt-12 sm:pt-16">
+        {/* LOGO */}
         <Image
-          className="dark:invert"
-          src="/next.svg"
-          alt="Next.js logo"
-          width={100}
-          height={20}
+          src={logo}
+          alt="Ping logo"
+          width={90}
+          height={28}
+          className="h-auto w-auto"
           priority
         />
-        <div className="flex flex-col items-center gap-6 text-center sm:items-start sm:text-left">
-          <h1 className="max-w-xs text-3xl font-semibold leading-10 tracking-tight text-black dark:text-zinc-50">
-            To get started, edit the page.tsx file.
+
+        {/* HEADING + SUBTEXT */}
+        <section className="mt-10 text-center space-y-3">
+          <h1 className="text-[28px] sm:text-[40px] md:text-[48px] font-extralight text-[hsl(0,0%,59%)]">
+            We are launching{" "}
+            <span className="font-bold text-[hsl(209,33%,12%)]">soon!</span>
           </h1>
-          <p className="max-w-md text-lg leading-8 text-zinc-600 dark:text-zinc-400">
-            Looking for a starting point or more instructions? Head over to{" "}
-            <a
-              href="https://vercel.com/templates?framework=next.js&utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-              className="font-medium text-zinc-950 dark:text-zinc-50"
-            >
-              Templates
-            </a>{" "}
-            or the{" "}
-            <a
-              href="https://nextjs.org/learn?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-              className="font-medium text-zinc-950 dark:text-zinc-50"
-            >
-              Learning
-            </a>{" "}
-            center.
+          <p className="text-[16px] sm:text-[20px] text-[#656565]">
+            Subscribe and get notified
           </p>
-        </div>
-        <div className="flex flex-col gap-4 text-base font-medium sm:flex-row">
-          <a
-            className="flex h-12 w-full items-center justify-center gap-2 rounded-full bg-foreground px-5 text-background transition-colors hover:bg-[#383838] dark:hover:bg-[#ccc] md:w-[158px]"
-            href="https://vercel.com/new?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            <Image
-              className="dark:invert"
-              src="/vercel.svg"
-              alt="Vercel logomark"
-              width={16}
-              height={16}
+        </section>
+
+        {/* FORM */}
+        <form
+          onSubmit={handleSubmit}
+          className="mt-8 w-full flex flex-col gap-3 sm:flex-row sm:items-start"
+          noValidate
+        >
+          <div className="flex-1">
+            <input
+               id="email"
+      type="email"
+              placeholder="Your email address..."
+              value={email}
+              onChange={(e) => setEmail(e.target.value)}
+              className={`w-full rounded-full border text-[#656565] font-medium px-6 py-3.5 text-sm outline-none bg-white shadow-sm placeholder:text-[hsl(0,0%,59%)] 
+              ${
+                error
+                  ? "border-[hsl(354,49%,60%)]"
+                  : "border-[hsl(223,100%,88%)]"
+              }`}
             />
-            Deploy Now
-          </a>
-          <a
-            className="flex h-12 w-full items-center justify-center rounded-full border border-solid border-black/[.08] px-5 transition-colors hover:border-transparent hover:bg-black/[.04] dark:border-white/[.145] dark:hover:bg-[#1a1a1a] md:w-[158px]"
-            href="https://nextjs.org/docs?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
+            {error && (
+              <p  id="email-error" className="mt-2 text-xs text-[hsl(354,100%,66%)] italic text-left ml-7 ">
+                {error}
+              </p>
+            )}
+          </div>
+
+          <button
+            type="submit"
+            className="rounded-full px-8 py-3.5 text-sm font-semibold cursor-pointer text-white shadow-lg 
+                       bg-[hsl(223,87%,63%)] hover:bg-[hsl(223,87%,58%)] transition 
+                       sm:min-w-[160px]"
           >
-            Documentation
-          </a>
+            Notify Me
+          </button>
+        </form>
+
+        {success && !error && (
+          <p className="mt-3 text-sm text-green-600 font-medium" aria-live="polite">{success}</p>
+        )}
+
+        {/* ILLUSTRATION */}
+        <div className="mt-12 sm:mt-16 w-full flex justify-center">
+          <Image
+            src={illust}
+            alt="Dashboard illustration"
+            width={900}
+            height={550}
+            className="w-full max-w-2xl h-auto"
+          />
         </div>
-      </main>
-    </div>
+      </div>
+
+      {/* FOOTER */}
+      <footer className="w-full max-w-3xl flex flex-col items-center gap-4 pb-10">
+  <div className="flex items-center gap-4">
+    <button className="h-10 w-10 flex items-center justify-center cursor-pointer rounded-full border border-gray-300 hover:bg-gray-00 hover:text-white transition">
+      <IoLogoFacebook className="text-xl text-[hsl(223,87%,63%)]" />
+    </button>
+
+    <button className="h-10 w-10 flex items-center justify-center cursor-pointer rounded-full border border-gray-300 hover:bg-gray-100 hover:text-white transition">
+      <IoLogoTwitter className="text-xl text-[hsl(223,87%,63%)]" />
+    </button>
+
+    <button className="h-10 w-10 flex items-center justify-center cursor-pointer rounded-full border border-gray-300 hover:bg-gray-100 hover:text-white transition">
+      <IoLogoInstagram className="text-xl text-[hsl(223,87%,63%)]" />
+    </button>
+  </div>
+
+  <p className="text-[11px] text-[hsl(0,0%,59%)]">
+    © Copyright Ping. All rights reserved.
+  </p>
+</footer>
+
+    </main>
   );
 }
